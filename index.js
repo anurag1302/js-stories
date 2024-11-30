@@ -1,20 +1,20 @@
 console.log("index works");
 
 //Using callbacks
-// function loadScript(src, callback) {
-//   let script = document.createElement("script");
-//   script.src = src;
-//   script.onload = function () {
-//     callback();
-//   };
-//   document.head.append(script);
-// }
+function loadScript(src, callback) {
+  let script = document.createElement("script");
+  script.src = src;
+  script.onload = function () {
+    callback();
+  };
+  document.head.append(script);
+}
 
-// loadScript("scripts.js", function () {
-//   greet();
-// });
+loadScript("scripts.js", function () {
+  greet();
+});
 
-// console.log("I am called after scripts.js is appended dynamically");
+console.log("I am called after scripts.js is appended dynamically");
 
 /**************************/
 //Using Promises
@@ -44,3 +44,21 @@ promise
   .catch((err) => {
     console.log(err);
   });
+
+/*******************/
+//Usage of fetch
+var apiData = "";
+
+const API_URL = "https://randomuser.me/api/";
+
+fetch(API_URL)
+  .then((response) => response.json())
+  .then((data) => {
+    console.log("data from api", data);
+    apiData = data.results[0];
+  })
+  .then(() => {
+    console.log(apiData);
+  });
+
+console.log("apiData.Email", apiData.email);
